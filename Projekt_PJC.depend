@@ -1,0 +1,22 @@
+# depslib dependency file v1.0
+1515346064 source:e:\dysk gogle\projekt_pjc_gra_muzyczna\projekt_pjc\main.c
+	<stdio.h>
+	<stdlib.h>
+	<curses.h>
+
+1515694507 source:c:\users\big-silver\dysk google\projekt_pjc_gra_muzyczna\projekt_pjc\main.c
+	<stdio.h>
+	<stdlib.h>
+	<curses.h>
+	<unistd.h>
+	<panel.h>
+	<windows.h>
+
+1515691388 source:d:\morgo\google drive\projekt_pjc_gra_muzyczna\projekt_pjc\main.c
+	<stdio.h>
+	<stdlib.h>
+	<curses.h>
+	<unistd.h>
+	<panel.h>
+	<windows.h>
+

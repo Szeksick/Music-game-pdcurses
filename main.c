@@ -1,0 +1,69 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <curses.h>
+#include <unistd.h>
+#include <panel.h>
+#include <windows.h>
+
+void print_score(WINDOW *win, int score) //w win wrzucamy okno w ktorym ma byc score wyswietlone
+{
+    int x, y;
+    getyx(win, y, x); // lapiemy pozycje okna
+    mvwprintw(win, y, x, "SCORE: %d", score); //wyswietlamy tam gdzie jest okno wiec jak sie odswierzy to tekst sie podmieni
+    refresh();
+}
+
+
+
+
+int ruch(int czas){
+    char ch;
+    /* Wylapujemy co kliknal gracz i zwracamy potem zwracamy ilosc pkt*/
+    while(ch = getch()){
+              switch(ch){
+                case 'q':    /*robimy coœ*/       break;
+                case 'w':    /*robimy coœ*/       break;
+                case 'e':    /*robimy coœ*/       break;
+                case 'r':    /*robimy coœ*/       break;
+                case 't':    /*robimy coœ*/       break;
+              }
+          }
+          /* tu damy return wynik */
+}
+
+
+int main()
+{	WINDOW *my_wins[4];// deklarujemy  tablice typu bêd¹ 4 okna
+	PANEL  *my_panels[4];//deklarujemy tabl;ice paneli bede 4 bo 4 okna sa
+	int y = 1, x = 1, i,max_y, max_x;
+
+	initscr();
+	cbreak();
+	noecho();
+	/* Pobieramy rozmiar ekranu */
+    getmaxyx(stdscr, max_y, max_x);
+	//tworzymy 4 panele
+	my_wins[0] = newwin(max_y-10, max_x-21, y, x);//plansza
+	my_wins[1] = newwin(3, 20, y, max_x-20);//score
+	my_wins[2] = newwin(max_y-10, 20, y + 3, max_x-20);//lista najlepszych
+	my_wins[3] = newwin(3, max_x-21, max_y-9, x);// ocena dobrze Ÿle jak w guitar hero czy cos
+
+    //Petla for funkcja box czyli obramowanie paneli
+	for(i = 0; i < 4; ++i)
+		box(my_wins[i], 0, 0);
+
+	/* Dolaczamy panele do okien */ 	     /* kolejnosc "z-index" gdyby nachodzily */
+	my_panels[0] = new_panel(my_wins[0]); 	/* 0 */
+	my_panels[1] = new_panel(my_wins[1]); 	/*  1 */
+	my_panels[2] = new_panel(my_wins[2]);   /*  2 */
+	my_panels[3] = new_panel(my_wins[3]); 	/*  3 */
+
+	/* odswiezenie paneli panel 2 bedzie mial najwyzszy z-index - bedzie na gorze gdyby nachodzily*/
+	update_panels();
+
+	/* update ekranu */
+	doupdate();
+
+	getch();
+	endwin();
+}
